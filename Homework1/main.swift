@@ -58,26 +58,23 @@ class ModelParser
 {
     func decode(path: String) throws -> Students
     {
-        enum ParserError: Error
-        {
-            case fileParsingFailed(name: String, Error)
-        }
-        
-        let url = URL(fileURLWithPath: path)
+        let url = URL(fileURLWithPath: path);
         do
         {
-            let data = try Data(contentsOf: url)
-            return try JSONDecoder().decode(Students.self, from: data)
+            let data = try Data(contentsOf: url);
+            return try JSONDecoder().decode(Students.self, from: data);
         } catch
         {
-            throw ParserError.fileParsingFailed(name: path, error)
+            throw error;
         }
     }
 }
 
 do
 {
-    let students = try ModelParser().decode(path: "/Users/kerbi/Projects/Homework1/Homework1/students.json")
-    print(students)
-} catch { print(error) }
+    let students = try ModelParser().decode(path: "/Users/kerbi/Projects/Homework1/Homework1/students.json");
+    print(students);
+    print(students.students.map { $0.age ?? 0 }.max()!);
+} catch { print(error); }
 
+// task 3
