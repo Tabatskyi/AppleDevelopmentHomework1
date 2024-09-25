@@ -21,7 +21,6 @@ func gnomeSort(array: inout [Int]) -> [Int]
 var testData = [35, 12, 43, 8, 51, 27, 19, 3, 47, 30];
 print(gnomeSort(array: &testData));
 
-// task 2
 let testDataSize: Int = 10000;
 testData = (0..<testDataSize).map { _ in .random(in: 1...200000) }  // https://stackoverflow.com/questions/28140145/create-an-array-of-random-numbers-in-swift
 
@@ -37,6 +36,48 @@ let gnomeSortFinish = Date();
 let gnomeSortTime = gnomeSortFinish.timeIntervalSince(gnomeSortStart);
 print("Execution time of gnome sort: \(gnomeSortTime) seconds");
 
-// task 3
+// task 2
+struct Student : Codable
+{
+    var id: Int;
+    var name: String;
+    var age: Int?;
+    var subjects: [String]?;
+    var address: Dictionary<String, String?>?;
+    var scores: Dictionary<String, Int?>?;
+    var hasScholarship: Bool?;
+    var graduationYear: Int?;
+}
 
+struct Students : Codable
+{
+    var students: [Student];
+}
+
+class ModelParser
+{
+    func decode(path: String) throws -> Students
+    {
+        enum ParserError: Error
+        {
+            case fileParsingFailed(name: String, Error)
+        }
+        
+        let url = URL(fileURLWithPath: path)
+        do
+        {
+            let data = try Data(contentsOf: url)
+            return try JSONDecoder().decode(Students.self, from: data)
+        } catch
+        {
+            throw ParserError.fileParsingFailed(name: path, error)
+        }
+    }
+}
+
+do
+{
+    let students = try ModelParser().decode(path: "/Users/kerbi/Projects/Homework1/Homework1/students.json")
+    print(students)
+} catch { print(error) }
 

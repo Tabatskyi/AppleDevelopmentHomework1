@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE881AE82CA473FF0058763F /* students.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = students.json; path = ../../../../../../../../Projects/Homework1/Homework1/students.json; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED7EE6F2CA291FD00FC0D98 /* Homework1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Homework1; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED7EE722CA291FD00FC0D98 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				CED7EE722CA291FD00FC0D98 /* main.swift */,
+				CE881AE82CA473FF0058763F /* students.json */,
 			);
 			path = Homework1;
 			sourceTree = "<group>";

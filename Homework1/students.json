@@ -1,0 +1,170 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "age": 20,
+      "subjects": ["Math", "Physics"],
+      "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "postalCode": "10001"
+      },
+      "scores": {
+        "Math": 95,
+        "Physics": 88,
+        "Chemistry": null
+      },
+      "hasScholarship": true,
+      "graduationYear": 2024
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "age": 22,
+      "subjects": ["Literature", "History"],
+      "address": {
+        "street": "456 Elm St",
+        "city": "San Francisco",
+        "postalCode": null
+      },
+      "scores": {
+        "Literature": 85,
+        "History": 90,
+        "Philosophy": 80
+      },
+      "hasScholarship": false,
+      "graduationYear": 2023
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "age": null,
+      "subjects": null,
+      "address": null,
+      "scores": null,
+      "hasScholarship": null,
+      "graduationYear": null
+    },
+    {
+      "id": 4,
+      "name": "Diana",
+      "age": 21,
+      "subjects": ["Biology", "Chemistry"],
+      "address": {
+        "street": "789 Oak St",
+        "city": "Chicago",
+        "postalCode": "60616"
+      },
+      "scores": {
+        "Biology": 92,
+        "Chemistry": 85
+      },
+      "hasScholarship": true,
+      "graduationYear": null
+    },
+    {
+      "id": 5,
+      "name": "Eve",
+      "age": 23,
+      "subjects": ["Math", "Computer Science"],
+      "address": {
+        "street": "101 Maple Ave",
+        "city": "Los Angeles",
+        "postalCode": "90001"
+      },
+      "scores": {
+        "Math": 78,
+        "Computer Science": 91
+      },
+      "hasScholarship": false,
+      "graduationYear": 2022
+    },
+    {
+      "id": 6,
+      "name": "Frank",
+      "age": 19,
+      "subjects": ["Physics", "Chemistry"],
+      "address": {
+        "street": "202 Pine St",
+        "city": "Boston",
+        "postalCode": "02101"
+      },
+      "scores": {
+        "Physics": 89,
+        "Chemistry": 84
+      },
+      "hasScholarship": false,
+      "graduationYear": 2025
+    },
+    {
+      "id": 7,
+      "name": "Grace",
+      "age": 20,
+      "subjects": ["History", "Philosophy"],
+      "address": {
+        "street": "303 Birch Rd",
+        "city": "Seattle",
+        "postalCode": "98101"
+      },
+      "scores": {
+        "History": 92,
+        "Philosophy": 85
+      },
+      "hasScholarship": true,
+      "graduationYear": 2024
+    },
+    {
+      "id": 8,
+      "name": "Henry",
+      "age": 21,
+      "subjects": ["Math", "Computer Science"],
+      "address": {
+        "street": "404 Cedar Blvd",
+        "city": "Miami",
+        "postalCode": "33101"
+      },
+      "scores": {
+        "Math": 90,
+        "Computer Science": 93
+      },
+      "hasScholarship": true,
+      "graduationYear": 2024
+    },
+    {
+      "id": 9,
+      "name": "Isabel",
+      "age": 22,
+      "subjects": ["Biology", "Chemistry"],
+      "address": {
+        "street": "505 Oak St",
+        "city": "Houston",
+        "postalCode": "77001"
+      },
+      "scores": {
+        "Biology": 94,
+        "Chemistry": 87
+      },
+      "hasScholarship": false,
+      "graduationYear": 2023
+    },
+    {
+      "id": 10,
+      "name": "Jack",
+      "age": 19,
+      "subjects": ["Literature", "History"],
+      "address": {
+        "street": "606 Spruce Dr",
+        "city": "Denver",
+        "postalCode": "80201"
+      },
+      "scores": {
+        "Literature": 88,
+        "History": 91
+      },
+      "hasScholarship": true,
+      "graduationYear": 2025
+    }
+  ]
+}
+
