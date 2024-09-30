@@ -36,6 +36,8 @@ let gnomeSortFinish = Date();
 let gnomeSortTime = gnomeSortFinish.timeIntervalSince(gnomeSortStart);
 print("Execution time of gnome sort: \(gnomeSortTime) seconds");
 
+// default sort is much more efficient than gnome sort, approximately, default sort is 360 times faster than gnome
+
 // task 2
 struct Student : Codable
 {
@@ -56,25 +58,63 @@ struct Students : Codable
 
 class ModelParser
 {
-    func decode(path: String) throws -> Students
+    let students: [Student];
+    init(path: String) throws
     {
         let url = URL(fileURLWithPath: path);
         do
         {
             let data = try Data(contentsOf: url);
-            return try JSONDecoder().decode(Students.self, from: data);
+            students = try JSONDecoder().decode(Students.self, from: data).students;
         } catch
         {
             throw error;
         }
     }
+    func unwrap<T>(value: T?) -> String
+    {
+        if (value != nil)
+        {
+            return String(describing: value!);
+        }
+        else
+        {
+            return "N/A"
+        }
+    }
+    func printStudents()
+    {
+        for student in students
+        {
+            print("Student ID: \(student.id), Name: \(student.name), Age: \(unwrap(value: student.age)), Subjects: \(unwrap(value: student.subjects)), Adress: \(unwrap(value: student.address)), Scores: \(unwrap(value: student.scores)), Scholarship: \(unwrap(value: student.hasScholarship)), Graduation Year: \(unwrap(value: student.graduationYear))")
+        }
+    }
+    func findOldestStudents()
+    {
+        let sortedStudents = students.sorted(by: {$0.age ?? 0 > $1.age ?? 0});
+        let maxAge = sortedStudents[0].age;
+        if (maxAge == nil)
+        {
+            print("There is no age of any student in data")
+            return
+        }
+        var oldestStudents: [String] = [];
+        for student in sortedStudents
+        {
+            if (student.age == maxAge)
+            {
+                oldestStudents.append(student.name);
+            }
+        }
+        print("Oldest students: \(oldestStudents.joined(separator: ", ")), with age of \(maxAge!)")  // https://stackoverflow.com/questions/25827033/how-do-i-convert-a-swift-array-to-a-string
+    }
 }
 
 do
 {
-    let students = try ModelParser().decode(path: "/Users/kerbi/Projects/Homework1/Homework1/students.json");
-    print(students);
-    print("Max students age: \(students.students.map { $0.age ?? 0 }.max()!)");
+    let model = try ModelParser(path: "/Users/kerbi/Projects/Homework1/Homework1/students.json");
+    model.printStudents();
+    model.findOldestStudents();
 } catch { print(error); }
 
 // task 3
