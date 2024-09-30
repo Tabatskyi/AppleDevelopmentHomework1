@@ -122,12 +122,35 @@ do
 class TreeNode
 {
     var value: Int;
-    var children: [TreeNode?];
+    var children: [TreeNode];
     
-    init(value: Int, children: [TreeNode])
+    init(value: Int)
     {
         self.value = value;
-        self.children = children;
+        self.children = [];
+    }
+    
+    func addChild(_ node: TreeNode)
+    {
+        self.children.append(node);
+    }
+    
+    func DFSSearch(value: Int, depth: Int = 0) -> Bool
+    {
+        print("\(String(repeating: " ", count: depth)) Node with value \(self.value)");  // https://stackoverflow.com/questions/27806693/create-a-string-with-n-blank-spaces-or-other-repeated-character
+        if (self.value == value)
+        {
+            print("Found \(value)");
+            return true;
+        }
+        for child in children
+        {
+            if child.DFSSearch(value: value, depth: (depth + 1))
+            {
+                return true
+            }
+        }
+        return false;
     }
 }
 
@@ -139,32 +162,30 @@ func createTree(childrenRangeStart x: Int, childrenRangeEnd y: Int, depth: Int) 
     }
     else if (depth <= 0)
     {
-        return TreeNode(value: 0, children: []);
+        return TreeNode(value: 0);
     }
     
-    var children: [TreeNode] = [];
     let childrenCount = Int.random(in: x...y);
-    for i in 0...childrenCount
+    let node = TreeNode(value: abs(depth - childrenCount));
+    for _ in 0..<childrenCount
     {
-        if let child = createTree(childrenRangeStart: x, childrenRangeEnd: y, depth: depth - i - 1)
+        if let child = createTree(childrenRangeStart: x, childrenRangeEnd: y, depth: depth - 1)
         {
-            children.append(child);
+            node.addChild(child);
         }
         else { return nil; }
     }
-    return TreeNode(value: depth, children: children);
+    return node;
 }
 
-func recursiveTraverse(_ node: TreeNode?){
-    guard let node = node else { return }
-    print(node.value)
-    for child in node.children
-    {
-        recursiveTraverse(child)
-    }
+guard let treeRoot = createTree(childrenRangeStart: 2, childrenRangeEnd: 5, depth: 10) else
+{
+    print("Error in creating tree");
+    exit(1);
 }
-
-let deepTreeRoot = createTree(childrenRangeStart: 2, childrenRangeEnd: 10, depth: 10)
-recursiveTraverse(deepTreeRoot)
-
-print("Done")
+let valueToFind = 222;
+if (!treeRoot.DFSSearch(value: valueToFind))
+{
+    print("Not found \(valueToFind) in tree");
+}
+print("Done");
