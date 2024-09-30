@@ -74,7 +74,57 @@ do
 {
     let students = try ModelParser().decode(path: "/Users/kerbi/Projects/Homework1/Homework1/students.json");
     print(students);
-    print(students.students.map { $0.age ?? 0 }.max()!);
+    print("Max students age: \(students.students.map { $0.age ?? 0 }.max()!)");
 } catch { print(error); }
 
 // task 3
+
+class TreeNode
+{
+    var value: Int;
+    var children: [TreeNode?];
+    
+    init(value: Int, children: [TreeNode])
+    {
+        self.value = value;
+        self.children = children;
+    }
+}
+
+func createTree(childrenRangeStart x: Int, childrenRangeEnd y: Int, depth: Int) -> TreeNode?
+{
+    if ((x < 0 || y <= 0) || (x >= y))
+    {
+        return nil;
+    }
+    else if (depth <= 0)
+    {
+        return TreeNode(value: 0, children: []);
+    }
+    
+    var children: [TreeNode] = [];
+    let childrenCount = Int.random(in: x...y);
+    for i in 0...childrenCount
+    {
+        if let child = createTree(childrenRangeStart: x, childrenRangeEnd: y, depth: depth - i - 1)
+        {
+            children.append(child);
+        }
+        else { return nil; }
+    }
+    return TreeNode(value: depth, children: children);
+}
+
+func recursiveTraverse(_ node: TreeNode?){
+    guard let node = node else { return }
+    print(node.value)
+    for child in node.children
+    {
+        recursiveTraverse(child)
+    }
+}
+
+let deepTreeRoot = createTree(childrenRangeStart: 2, childrenRangeEnd: 10, depth: 10)
+recursiveTraverse(deepTreeRoot)
+
+print("Done")
