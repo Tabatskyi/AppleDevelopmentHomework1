@@ -183,9 +183,77 @@ guard let treeRoot = createTree(childrenRangeStart: 2, childrenRangeEnd: 5, dept
     print("Error in creating tree");
     exit(1);
 }
-let valueToFind = 222;
+let valueToFind = 2;
 if (!treeRoot.DFSSearch(value: valueToFind))
 {
     print("Not found \(valueToFind) in tree");
 }
 print("Done");
+
+
+// task 4
+struct CircularArray<Element> : Collection  // https://www.swiftbysundell.com/articles/creating-custom-collections-in-swift/ , https://paigeshin1991.medium.com/swift-create-custom-collection-02b9afabf58d , https://www.kodeco.com/10286147-building-a-custom-collection-with-protocols-in-swift
+{
+    private var elements: [Element];
+    init(_ elements: [Element])
+    {
+        self.elements = elements;
+    }
+    var startIndex: Int { return elements.startIndex; }
+    var endIndex: Int { return elements.endIndex; }
+    
+    func index(after i: Int) -> Int
+    {
+        return i + 1;
+    }
+    
+    subscript(position: Int) -> Element
+    {
+        get
+        {
+            let index = calculateIndex(position);
+            return elements[index];
+        }
+        set
+        {
+            let index = calculateIndex(position);
+            elements[index] = newValue;
+        }
+    }
+    
+    func calculateIndex(_ index: Int) -> Int
+    {
+        let count = elements.count
+        if count <= 0
+        {
+            fatalError("Array is empty");
+        }
+        var calculatedIndex = index % count;
+        if (calculatedIndex < 0)
+        {
+            calculatedIndex += count;
+        }
+        return calculatedIndex;
+    }
+}
+
+var ints = CircularArray([1, 2, 3, 4, 5]);
+print(ints[0])
+print(ints[-1])
+print(ints[-2])
+print(ints[5])
+
+var strings = CircularArray(["a", "b", "c"])
+print(strings[0])
+print(strings[-1])
+print(strings[-2])
+print(strings[5])
+
+var floats = CircularArray([1, 2, 3, 4, 5]);
+print(floats[0])
+print(floats[-1])
+print(floats[-2])
+print(floats[5])
+
+var array = CircularArray([]);
+print(array[1])
