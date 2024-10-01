@@ -1,4 +1,6 @@
 import Foundation;
+
+// repo: https://github.com/Tabatskyi/AppleDevelopmentHomework1
 // task 1
 func gnomeSort(array: inout [Int]) -> [Int]
 {
@@ -36,7 +38,7 @@ let gnomeSortFinish = Date();
 let gnomeSortTime = gnomeSortFinish.timeIntervalSince(gnomeSortStart);
 print("Execution time of gnome sort: \(gnomeSortTime) seconds");
 
-// default sort is much more efficient than gnome sort, approximately, default sort is 360 times faster than gnome
+// default sort is much more efficient than gnome sort. Approximately, default sort is 360 times faster than gnome
 
 // task 2
 struct Student : Codable
@@ -64,7 +66,7 @@ class ModelParser
         let url = URL(fileURLWithPath: path);
         do
         {
-            let data = try Data(contentsOf: url);
+            let data = try Data(contentsOf: url);  // https://stackoverflow.com/questions/24410881/reading-in-a-json-file-using-swift
             students = try JSONDecoder().decode(Students.self, from: data).students;
         } catch
         {
@@ -118,7 +120,6 @@ do
 } catch { print(error); }
 
 // task 3
-
 class TreeNode
 {
     var value: Int;
@@ -160,7 +161,7 @@ func createTree(childrenRangeStart x: Int, childrenRangeEnd y: Int, depth: Int) 
     {
         return nil;
     }
-    else if (depth <= 0)
+    else if (depth == 0)
     {
         return TreeNode(value: 0);
     }
@@ -192,7 +193,7 @@ print("Done");
 
 
 // task 4
-struct CircularArray<Element> : Collection  // https://www.swiftbysundell.com/articles/creating-custom-collections-in-swift/ , https://paigeshin1991.medium.com/swift-create-custom-collection-02b9afabf58d , https://www.kodeco.com/10286147-building-a-custom-collection-with-protocols-in-swift
+struct CircularArray<Element> : Collection  // https://www.swiftbysundell.com/articles/creating-custom-collections-in-swift/  https://paigeshin1991.medium.com/swift-create-custom-collection-02b9afabf58d  https://www.kodeco.com/10286147-building-a-custom-collection-with-protocols-in-swift
 {
     private var elements: [Element];
     init(_ elements: [Element])
@@ -226,7 +227,7 @@ struct CircularArray<Element> : Collection  // https://www.swiftbysundell.com/ar
         let count = elements.count
         if count <= 0
         {
-            fatalError("Array is empty");
+            fatalError("Array is empty");  // https://www.swiftbysundell.com/articles/picking-the-right-way-of-failing-in-swift/
         }
         var calculatedIndex = index % count;
         if (calculatedIndex < 0)
